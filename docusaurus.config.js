@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 const config = {
   title: 'title',
   tagline: 'Dinosaurs are cool',
-  url: 'https://NoraYu-blog.netlify.app',
+  url: 'https://norayu-blog.netlify.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
