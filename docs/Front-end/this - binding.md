@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # this - binding object 綁定物件
 
 ## this

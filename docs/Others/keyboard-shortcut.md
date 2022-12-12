@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # keyboard shortcut
 
 1. 上下選起一行
@@ -47,7 +43,7 @@ sidebar_position: 1
 vscode only
 
 ```
-control + k ->  control + J expand all line
+control + k ->  control + J: expand all line
 
-control + K -> control + 0 fold all line
+control + K -> control + 0: fold all line
 ```
