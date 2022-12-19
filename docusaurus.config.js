@@ -10,7 +10,7 @@ const config = {
   tagline: 'Dinosaurs are cool',
   url: 'https://norayu-blog.netlify.app',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
 
