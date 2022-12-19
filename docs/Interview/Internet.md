@@ -111,6 +111,4 @@ CORS 跟 same origin policy 有關，是為了安全性所以瀏覽器禁止跨�
 
 cookie 大小在 4 KB 以內，而 localStorage 與 sessionStorage 的大小在 5 MB 以內。localStorage 沒有過期時間的限制；sessionStorage 存的資料則會在 session 結束時被清除；cookie 則是要看有沒有透過 expires 屬性設定過期時間，如果有的話就以 expires 屬性為主，沒有的話就以 session 為主。
 
-![https://miro.medium.com/max/1400/1*JiT0KNuYIO8l5QBtpNtOHA.png](https://miro.medium.com/max/1400/1*JiT0KNuYIO8l5QBtpNtOHA.png)
-
 [參考資料](<[https://medium.com/@bebebobohaha/cookie-localstorage-sessionstorage-差異-9e1d5df3dd7f](https://medium.com/@bebebobohaha/cookie-localstorage-sessionstorage-%E5%B7%AE%E7%95%B0-9e1d5df3dd7f)>)
