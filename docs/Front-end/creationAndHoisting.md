@@ -1,4 +1,4 @@
-## Creation and Hoisting
+# Creation and Hoisting
 
 Execution Context 的產生分為兩個階段
 
