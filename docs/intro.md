@@ -13,4 +13,4 @@ TAGS：生科所畢業的前端工程師、喜歡吸收與思考有趣知識並�
 
 如果有錯或建議請不吝指出，請多指教 🌝
 
-**CONTACT ME 📬 [Email](menlen6205@gmail.com) 📬**
+**CONTACT ME 📬 menlen6205@gmail.com 📬**

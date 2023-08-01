@@ -30,7 +30,7 @@
 
 ![img](./img/ImageEditor04.png)
 
-### 4. 輸出畫布
+#### 4. 輸出畫布
 
 ![img](./img/ImageEditor05.png)
 
