@@ -58,7 +58,7 @@ const e = 456
 
 4. const 宣告時一定要賦值。不可以重新賦值，但可以更改內容。其餘兩者沒有此限制
 
-```java
+```js
 const a = 123
 a = 456
 // caught SyntaxError: Identifier 'a' has already been declared
@@ -245,7 +245,7 @@ function 實際在程式碼脈絡中處在的實體位置 (lexical environment)�
 
 但實際上取得到，因為 closure 的特性，在 `var func = outer()` 執行的時候，他不但回傳了 inner，也回傳的他的 lexical environment，也就是說 closure 被 return 了。
 
-```jsx
+```js
 function outer() {
   var a = 10
   function inner() {
