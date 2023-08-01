@@ -13,7 +13,7 @@
 
 ```jsx
 function test() {
-  console.log(this);
+  console.log(this)
 }
 ```
 
@@ -36,8 +36,8 @@ let Obj{
 
 ```jsx
 document.addEventListener('mouseover', function () {
-  console.log(this);
-});
+  console.log(this)
+})
 ```
 
 ### 4. 建構函式 (constructor)：
@@ -46,9 +46,9 @@ document.addEventListener('mouseover', function () {
 
 ```jsx
 function Point() {
-  console.log(this);
+  console.log(this)
 }
-new Point();
+new Point()
 ```
 
 5. Arrow function
@@ -64,7 +64,7 @@ new Point();
 回傳一個新的 function
 
 ```jsx
-let newFuntion = oldFunctionName.bind(新的綁定物件);
+let newFuntion = oldFunctionName.bind(新的綁定物件)
 /* 
 回傳function with 新的綁定物件
 因為式回傳新的function所以務必要宣告新變數存起來
@@ -77,12 +77,12 @@ let newFuntion = oldFunctionName.bind(新的綁定物件);
 
 ```jsx
 function add(a, b) {
-  return a + b;
+  return a + b
 }
 // 一般的函式呼叫
-add(1, 2);
+add(1, 2)
 // 傳入 document 物件當作新的綁定物件，傳入 [4, 5] 當作參數來呼叫這個 add
-add.apply(document, [4, 5]);
+add.apply(document, [4, 5])
 ```
 
 ### 3. functionName.call(新綁定物件, 參數…)
@@ -91,14 +91,16 @@ add.apply(document, [4, 5]);
 
 ```jsx
 function add(a, b) {
-  return a + b;
+  return a + b
 }
 // 一般的函式呼叫
-add(1, 2);
+add(1, 2)
 // 傳入 document 物件當作新的綁定物件，傳入 4, 5 當作參數來呼叫這個 add
-add.call(document, 4, 5);
+add.call(document, 4, 5)
 ```
 
-References:
+## Reference
+
+---
 
 - [Function 內的 this 到底是哪個 this](https://www.spreered.com/arrow-function-this/)
