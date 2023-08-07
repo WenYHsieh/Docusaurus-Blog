@@ -4,7 +4,7 @@
 
 他是一個由 JS engine 提供的程式碼，用來驗證及執行你現在正在執行的程式碼用的，可以說，他管理了正在被執行的 lexical environment，同時也管理除了你的 code 之外所需的其他事情
 
-當 JavaScript 程式碼執行時，執行引擎會創建和管理多個 EC，並根據程式碼的結構和執行順序來處理它們。每個函數調用都會創建一個新的 EC，並將其添加到呼叫堆疊（Call Stack）中。當函數執行完成後，相應的 EC 將從 call stack 中移除。
+當 JavaScript 程式碼執行時，JS engine 會創建和管理多個 EC，並根據程式碼的結構和執行順序來處理它們。每個 function 呼叫時都會創建一個新的 EC，並將其添加到呼叫堆疊（Call Stack）中。當函數執行完成後，相應的 EC 將從 call stack 中移除。
 
 ## Lexical environment 語彙環境
 
@@ -168,3 +168,11 @@ Undefined
 10
 100
 ```
+
+## Reference
+
+---
+
+[JavaScript 全攻略：克服 JS 的奇怪部分](https://www.udemy.com/course/javascriptjs/)
+
+[How JavaScript Code is executed? ❤️& Call Stack | Namaste JavaScript Ep. 2](https://www.youtube.com/watch?v=iLWTnMzWtj4&list=RDCMUC3N9i_KvKZYP4F84FPIzgPQ&index=6)

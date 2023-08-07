@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'title',
+  title: 'WenYHsieh',
   tagline: 'Dinosaurs are cool',
   url: 'https://norayu-blog.netlify.app',
   baseUrl: '/',
@@ -42,6 +42,7 @@ const config = {
         },
         blog: {
           showReadingTime: true,
+
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -57,6 +58,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [
+        {
+          name: 'keywords',
+          content: 'fronted, backend, javascript, React, blog',
+        },
+      ],
       navbar: {
         title: 'WendyHsieh',
         logo: {
@@ -77,6 +84,11 @@ const config = {
             position: 'right',
           },
         ],
+      },
+      docs: {
+        sidebar: {
+          hideable: true,
+        },
       },
       footer: {
         style: 'dark',

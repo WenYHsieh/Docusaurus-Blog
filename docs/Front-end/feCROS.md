@@ -1,3 +1,9 @@
+---
+title: 前端開發 CORS issue
+description: Discussion Post on CORS Issues in Frontend Development
+keywords: [CORS, frontend, backend, proxy]
+---
+
 # 前端開發 CORS issue
 
 ## CORS issue 發生的原因
