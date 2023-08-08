@@ -2,15 +2,21 @@
 
 ## Execution context, EC, 執行環境
 
+---
+
 他是一個由 JS engine 提供的程式碼，用來驗證及執行你現在正在執行的程式碼用的，可以說，他管理了正在被執行的 lexical environment，同時也管理除了你的 code 之外所需的其他事情
 
 當 JavaScript 程式碼執行時，JS engine 會創建和管理多個 EC，並根據程式碼的結構和執行順序來處理它們。每個 function 呼叫時都會創建一個新的 EC，並將其添加到呼叫堆疊（Call Stack）中。當函數執行完成後，相應的 EC 將從 call stack 中移除。
 
 ## Lexical environment 語彙環境
 
+---
+
 在定義了 lexical environment 的程式語言當中，代表你的程式碼寫在哪邊（物理上位置）是很重要的。這關係到他和其他程式碼 （包括變數、函式或其他程式）的關係、在記憶體中的樣子，以及它們可以被訪問的範圍，因為這對於編譯器如何解析你的程式碼。
 
 ## Global Execution context 全域執行環境
+
+---
 
 當 JavaScript 程式碼開始執行時，會創建一個全域 Execution Context，稱為 Global Execution Context，這是最上層的 Execution Context，裡面 Global Object、this variable 會被產生。
 
@@ -33,6 +39,8 @@
   - GEC 的 Outer Environment 通常被設置為 null，因為它處於最外層
 
 ## Creation and Hoisting
+
+---
 
 JavaScript 程式碼執行時會有兩個階段
 
