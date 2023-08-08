@@ -1,3 +1,7 @@
+---
+enableComments: true
+---
+
 # this - binding object 綁定物件
 
 ## this

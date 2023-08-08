@@ -1,3 +1,7 @@
+---
+enableComments: true
+---
+
 # keyboard shortcut
 
 1. 上下選起一行

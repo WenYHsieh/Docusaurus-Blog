@@ -1,3 +1,7 @@
+---
+enableComments: true
+---
+
 # React 狀態更新
 
 ## Primitive type

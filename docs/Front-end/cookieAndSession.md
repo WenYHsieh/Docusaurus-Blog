@@ -1,3 +1,7 @@
+---
+enableComments: true
+---
+
 # Cookie and Session
 
 ## HTTP 的無狀態性質

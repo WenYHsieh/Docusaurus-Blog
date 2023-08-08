@@ -1,3 +1,7 @@
+---
+enableComments: true
+---
+
 # 了解 JS 如何被 runtime 執行
 
 ## Execution context, EC, 執行環境

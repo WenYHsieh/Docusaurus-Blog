@@ -1,3 +1,7 @@
+---
+enableComments: true
+---
+
 ## 簡介
 
 ---

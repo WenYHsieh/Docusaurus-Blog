@@ -1,3 +1,7 @@
+---
+enableComments: true
+---
+
 # 加密貨幣與區塊鏈原理
 
 ## Digital signature 數位簽章
