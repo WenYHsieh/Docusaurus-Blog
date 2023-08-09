@@ -93,7 +93,7 @@ const config = {
       footer: {
         style: 'dark',
         links: [],
-        copyright: `Copyright © ${new Date().getFullYear()} Norayu. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} WenYHsieh. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

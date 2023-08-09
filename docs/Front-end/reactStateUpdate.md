@@ -4,7 +4,7 @@ enableComments: true
 
 # React 狀態更新
 
-## Primitive type
+## Primitive type 的更新
 
 ---
 
@@ -16,7 +16,7 @@ const [count, setCount] = useState(0)
 setState(1)
 ```
 
-## Object 物件 (object, Array)
+## Object 物件 (object, Array) 的更新
 
 ---
 
@@ -58,6 +58,50 @@ Object 可以是 mutable 的，代表同一個記憶體位置裡面的 Object �
    ```
 
 2. 避免副作用： 使用 mutable 資料可能導致 side effect，即在修改資料時可能會影響到其他部分的程式碼，導致錯誤或難以預測的行為。
+
+<!-- ## 以 immutable 方式更新 object/Array state
+
+### object
+
+1. 非 nested object
+
+   - `Object.assign`
+
+   ```js
+   const originalObj = { name: 'lix' }
+   const clonedObj = Object.assign({}, originalObj)
+   console.log(clonedObj === originalObj) //false
+   ```
+
+   - Spread operator `...`
+
+   ```js
+   const originalObj = { name: 'lix' }
+   const clonedObj = { ...originalObj }
+   console.log(clonedObj === originalObj) //false
+   ```
+
+2. nested object
+
+   - 利用 recursive 自己實作一個 deep copy function
+   - `Json.stringify` / `Json.parse`
+
+     - 轉換時可能需要注意屬性出現非預期結果
+
+   - Lodash 這樣的套件提供的現成的 `cloneDeep` 方法
+
+     - 缺點：僅僅這個 function 就要多 17 kb 左右
+
+   - immer 有 `useImmer` 讓我們可以使用 mutable 語法撰寫 immutable 程式碼
+
+   - built-in 方法 `structuredClone`
+     - 優點：多種瀏覽器、node.js、bun 都支援、nested object and array 都可以安心使用
+     - 缺點：仍有一些不支援的資料類型要注意，如： function, DOM node…
+
+### Array
+
+1. 非 nested array
+   - Spread operator `...` -->
 
 ## Reference
 
