@@ -68,6 +68,8 @@ Electron 將 Chromium 及 Node.js embed 在一起作為 runtime，使得我們�
 
 ## Process modal in Electron
 
+---
+
 剛才提到在 Electron 當中也是採用 multi-process 的架構，在寫 Electron 的時候，開發人員會需要關注到的是 process modal 上面的三個部分， main process, renderer process 及 preload script
 
 **main process**:

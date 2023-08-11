@@ -6,9 +6,13 @@ enableComments: true
 
 ## React function component 是 JS function
 
+---
+
 因為 function component 其實就是 function ，他的 execution context 執行完之後就會離開 call stack 被清除。這就是為何， react function component 的一個狀態，如果用一般的變數告，在 render 之間是無法保存的。
 
 ## useState hook
+
+---
 
 有上述前提後，就可以理解為何我們需要，React `useState` hook 了：因為我們希望在 render 之間保持狀態。
 
@@ -39,6 +43,8 @@ const handleAdd = () => {
 
 ## setState 兩種形式
 
+---
+
 **直接取代值的形式**
 
 ```js
@@ -67,6 +73,8 @@ const handleAdd = () => {
 ```
 
 ## setState batching
+
+---
 
 React 會在所有 setState 請求結束後才更新畫面，這現象叫做 `batching`。
 
