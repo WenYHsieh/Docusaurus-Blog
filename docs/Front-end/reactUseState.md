@@ -2,7 +2,7 @@
 enableComments: true
 ---
 
-# 從官方文件重新理解 React useState hook
+# React useState hook
 
 ## React function component 是 JS function
 
