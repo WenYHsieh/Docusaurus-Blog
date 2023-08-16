@@ -10,6 +10,8 @@ enableComments: true
 
 HTTP 是無狀態的，無法記住每個 request 之間的關聯。如果需要這樣的聯繫，例如登入登出功能記住使用者有無登入過，可以實作 session 機制來達成。
 
+
+
 ## Session
 
 ---
@@ -24,7 +26,11 @@ session 具有幾個特性：
 
 要實作 session 機制有許多不同方法，而因為一些好特性，其中最常用的為 Cookie。
 
+
+
 ## Cookie
+
+---
 
 Cookie 是 HTTP 中，實作（建立） session 的一個工具（容器），本質上是儲存在瀏覽器裡面的小份資料。
 
