@@ -14,7 +14,9 @@ React 提供的，讓我們可以在每次 render 導致畫面更新之後，都
 
 這不是專們用來模擬 class component 生命週期的 hook，因為他會在每次 dependency 內容更新後都被執行，意義上比較像是讓 component 去跟外在環境同步，而不是讓我們在 component 生命週期某階段（例如 mount）作某些事情。
 
-React 18 為了模擬 component unmount 後再次 mount 也會得到相同結果、component 不會壞掉（如果壞掉的話，也許要檢查是不是需要使用 cleanup function），所以使用 `strict-mode` 且為開發環境時，會 mount component 兩次，`useEffect` 的 function 也會被執行兩次。
+React 18 為了模擬 component unmount 後再次 mount 的行為，會 mount component 兩次。這是為了確保 component 夠穩健，兩次都會得到相同結果、component 不會壞掉。（如果壞掉的話，也許要檢查是不是需要使用 cleanup function，或者其他地方有 bug，總之可以及早發現及早治療）
+
+所以使用 `strict-mode` 且處在開發環境時，`useEffect` 的 Effect 也會被執行兩次。
 
 如果真的不需要可以用 `useRef` 判斷是否跑過一次。
 
@@ -204,7 +206,6 @@ useEffect(() => {
        }
      }, [card]);
 
-
      useEffect(() => {
        if (goldCardCount > 3) {
          setRound(r => r + 1)
@@ -233,37 +234,39 @@ useEffect(() => {
      // ...
    ```
 
-   改善的作法是可以將判斷的邏輯都放到一個 function 裡面，或是直接在 render 計算。而且因為 batching 特性，這些 setState 會一次去更新，也減少了不必要的 re-render
+   改善的作法是可以將判斷的邏輯都放到一個 function 裡面，或是直接在 render 計算。而且因為 batching 特性，這些 setState 會一 次去更新，也減少了不必要的 re-render
 
    ```js
    function Game() {
-     const [card, setCard] = useState(null);
-     const [goldCardCount, setGoldCardCount] = useState(0);
-     const [round, setRound] = useState(1);
+     const [card, setCard] = useState(null)
+     const [goldCardCount, setGoldCardCount] = useState(0)
+     const [round, setRound] = useState(1)
 
      // ✅ Calculate what you can during rendering
-     const isGameOver = round > 5;
+     const isGameOver = round > 5
 
      function handlePlaceCard(nextCard) {
        if (isGameOver) {
-         throw Error('Game already ended.');
+         throw Error('Game already ended.')
        }
 
        // ✅ Calculate all the next state in the event handler
-       setCard(nextCard);
+       setCard(nextCard)
        if (nextCard.gold) {
          if (goldCardCount <= 3) {
-           setGoldCardCount(goldCardCount + 1);
+           setGoldCardCount(goldCardCount + 1)
          } else {
-           setGoldCardCount(0);
-           setRound(round + 1);
+           setGoldCardCount(0)
+           setRound(round + 1)
            if (round === 5) {
-             alert('Good game!');
+             alert('Good game!')
            }
          }
        }
      }
+   }
 
+   // ...
    ```
 
 ## Reference

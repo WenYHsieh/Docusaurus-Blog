@@ -69,3 +69,147 @@ CSS 是全域的，因此會有 class name 相同後面覆蓋到前面的問題�
 因此 BEM 把一個元素的 class 用這三者來加以定義，使之形成 scope，來減少撞名的可能。
 
 例如，元素是一個資訊卡中的按鈕，可能會這樣命名：`infoCard__button--active` -> `[Block]__[Element]--[Modifier]`
+
+
+
+## display
+
+---
+
+- inline 行內元素
+  - 寬高由內容物來決定，無法自訂寬高。
+  - 和其他元素的關係：可併排在同一行。
+  - 上下 margin 亦無法調整 (左右可以)，padding 無效。
+  - 常見: a, span, img ...。
+- block 區塊元素
+  - 預設寬度會佔滿整行。
+  - 和其他元素的關係：他之後的元素就會換到下一行。
+  - 可以調整寬高及其他屬性不受限制。
+  - 常見: div, h1, p ..。
+- inline-block 行內區塊元素
+  - 同時具有 inline 及 block 的特性。
+  - 和其他元素的關係：可併排在同一行。
+  - 可以調整寬高及其他屬性不受限制。
+  - 常見: button, input, select。
+
+## position
+
+---
+
+- static 靜態定位
+  - 排版流的預設狀態
+  - 從左上角開始畫，由上而下自動排列。
+  - 此時指定上下左右屬性皆無效。
+- relative 相對定位
+  - 設定元素要由原本的位置 x, y 軸偏移多少的位置開始畫。
+  - 它的特色是不會去擠壓到周邊的其他元素。
+- absolute 絕對定位
+  - 跳脫排版流，以「參考點」作為基準來畫。
+  - 參考點會從設定絕對定位的這層元素開始往上找，第一個非 static 的元素就會成為參考點。若都找不到非 static，就會以 body 做為參考點 (左上角)。
+- fixed 固定定位
+  - 跳脫排版流，以瀏覽器的位置 (viewport) 來做定位。
+  - 不會影響到周邊其他元素。
+
+
+
+## font-face
+
+---
+
+引入自定義字型用的。
+
+如下：
+
+引用 `url` 引用 `.woff`, `opentype` 兩種字型檔案，定義 `font-family` 為 `nicefont`，即可使用這個 font-family。
+
+用 `format` 可以告訴瀏覽器字型檔案的類型，瀏覽器看到後可以先判斷支不支援，而不需等到真正的字型檔案載入後才判斷。
+
+```css
+@font-face {
+  font-family: 'nicefont';
+  src: url(ideal-sans-serif.woff) format("woff"),
+       url(basic-sans-serif.ttf) format("opentype");
+}
+
+body { 
+  // 第一順位套用 nicefont，不支援的話換用 serif
+  font-family: 'nicefont', 'serif'
+}
+```
+
+
+
+Reference:
+
+https://blog.gtwang.org/web-development/css-font-face/
+
+
+
+## 垂直與水平置中的作法
+
+---
+
+**文字 in div:**
+
+- 垂直：
+  - flex + align-items: center
+  
+    ```html
+    <div class='container'>
+      <p>
+        文字
+      </p>
+    </div>
+    ```
+  
+    ```css
+    .container {
+      display: flex;
+      align-items: center;
+      height: 100px;
+      border: 1px solid red;
+      background-color: pink;
+    }
+    ```
+  
+    
+  
+  - line-height: 行高就是單行的高度，把他、設定為元素 height
+  
+    ```css
+    .container {
+      height: 100px;
+    }
+    
+    p {
+        line-height: 100px;
+    }
+    ```
+  
+    
+  
+- 水平：
+  - flex + justify-content: center
+  
+    ```css
+    .container {
+      display: flex;
+      justify-content: center;
+      height: 100px;
+      border: 1px solid red;
+      background-color: pink;
+    }
+    ```
+  
+    
+
+**Div in div**
+
+- 垂直：
+  - 外層 div dispaly: flex + align-items: center
+  - 內層 div position: absolute + top: 50% + transform: translateY(-50%) （外層 div 不可為 position: static)
+- 水平：
+  - 外層 div display: flex + justify-content: center
+  - 內層 div position: absolute + left: 50% + transform: translateX(-50%) （外層 div 不可為 position: static)
+  - 內層 div margin: 0 auto (元素要記得設定寬度)
+

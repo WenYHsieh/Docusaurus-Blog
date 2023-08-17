@@ -229,7 +229,7 @@ console.log(expArray)
 // ['avocado', 'banana']
 ```
 
-### unshit
+### unshift
 
 - 從最前面加入一個或多個元素到 Array
 - 會改變原來的 Array
@@ -400,3 +400,28 @@ const item = {
 console.log(item)
 // {foo: 'foo', moo: 'moo'}
 ```
+
+
+
+## ES6
+
+---
+
+### 物件屬性省略寫法
+
+當使用變數來建立 object 時，希望物件的屬性名稱就是變數名稱，可以省略不寫屬性名稱
+
+```js
+const name = 'fileName'
+
+const fileMap = {
+  name
+  // 等同於 name: name
+}
+
+console.log(fileMap)
+// { name: 'fileName'}
+```
+
+
+

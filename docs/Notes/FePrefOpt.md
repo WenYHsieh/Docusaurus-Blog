@@ -4,6 +4,8 @@
 >
 > 佈署 web server：Nginx
 
+
+
 ## 網頁效能常見術語
 
 ---
@@ -13,13 +15,15 @@
 - **FCP, First Contentful Paint**：第一個能被使用者看見的內容出現的時間
 - **TTI, Time To Interactive**：直到可以互動為止的時間
 
+
+
 ## 為何要提升第一次進系統的速度
 
 ---
 
 1. 對 SEO 較好：有關於瀏覽器爬蟲每天分配給我們網站的時數有限
 
-2. 對使用者體驗較好
+2. 提升使用者體驗
 
    
 
@@ -31,9 +35,11 @@
 
 **縮小 bundle size**
 
-1. 刪掉不需要的 code（註解或沒用到的 import 之類的）
+1. 檢查並刪掉不需要的 code（註解或沒用到的 import 之類的）
 2. 增加系統模組化程度，抽出共用邏輯、元件等等
-3. 壓縮 bundle
+3. 壓縮 bundle：使用壓縮演算法（例如 gzip、Brotli）來縮小 bundle 的大小，從而減少傳輸時間。
+   - 使用 CompressionWebpackPlugin 在打包時對檔案進行壓縮
+   - Nginx config 增加 ` gzip on;` ，開啟 gzip 模式
 
 **利用 cache**
 
@@ -43,7 +49,7 @@
 
 **設定 dynamic import**
 
-用到才下載，動態下載 route 的資料
+以 route 為單位設定 dynamic import
 
 - React `<suspense/>` and `React.lazy`
 

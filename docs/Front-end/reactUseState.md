@@ -8,7 +8,7 @@ enableComments: true
 
 ---
 
-因為 function component 其實就是 function ，他的 execution context 執行完之後就會離開 call stack 被清除。這就是為何， react function component 的一個狀態，如果用一般的變數告，在 render 之間是無法保存的。
+因為 function component 其實就是 function ，他的 execution context 執行完之後就會離開 call stack 被清除。這就是為何， react function component 的一個狀態，如果用一般的變數宣告，在 render 之間是無法保存的。
 
 ## useState hook
 
