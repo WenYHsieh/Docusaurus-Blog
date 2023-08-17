@@ -1,4 +1,6 @@
-
+---
+enableComments: true
+---
 
 # cache 機制
 
@@ -12,7 +14,7 @@
 
 - `Expires` 告訴瀏覽器資源過期時間，瀏覽器收到這個 Response 之後就會把這個資源給快取起來，當下一次使用者再度造訪這個頁面或是要求這個圖片的資源的時候，瀏覽器會檢視「現在的時間」是否有超過這個 Expires。如果沒有超過的話，那瀏覽器「不會發送任何 Request」，而是直接從電腦裡面已經存好的 Cache 拿資料。status code 後面會出現 `from disk cache` 。
 
-  >  問題是，時間是檢視該台電腦上面的系統時間，這樣就可能造成結果不如預期
+  > 問題是，時間是檢視該台電腦上面的系統時間，這樣就可能造成結果不如預期
 
 - `max-age` 為解決 Expires 問題而出現，改為設定秒數，例如 31536000 就是 365 天後過期。一樣也是過期前都不會重發 request 拿資源。status code 後面會出現 `from memory cache`
 
@@ -34,7 +36,7 @@
 
 ---
 
- **為解決上述問題可以搭配使用`Etag` 與 `If-None-Match` 。**
+**為解決上述問題可以搭配使用`Etag` 與 `If-None-Match` 。**
 
 Etag 是 hash ，這 hash 由檔案產生，擁有檔案內容沒有改變 hash 就會是相同的特性
 
@@ -50,16 +52,9 @@ max-age=0 搭配 etag 可以達到，每次都會去問 server 有沒有新的�
 
 `cache-control: no-cache` 代表不要直接使用 cache 的東西，而是每次都會發 req 去確認有沒有新的檔案。
 
-> 容易搞混的是 
-> `cache-control: no-cache / cache-control: no-store`
-> 前者是不直接用的的意味，後者是完全不使用的意味，所以後者每次都會去拿新的檔案，會用在就是不想
-> 存任何東西在前端的時候，例如有機敏資料
-
-
+> 容易搞混的是 `cache-control: no-cache / cache-control: no-store` 前者是不直接用的的意味，後者是完全不使用的意味，所以後者每次都會去拿新的檔案，會用在就是不想存任何東西在前端的時候，例如有機敏資料
 
 SPA 可以使用 `no-cache` 搭配讓 bundler 輸出帶有 hash 的檔案（等同於 Etag)，來達到每次都會去問 server 有沒有新的檔案，沒有就用 cache 的檔案這樣的快取策略。
-
-
 
 :::caution 注意事項
 

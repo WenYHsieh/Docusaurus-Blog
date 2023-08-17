@@ -1,4 +1,8 @@
-# Redux 非同步行為處理及 Redux Middleware 
+---
+enableComments: true
+---
+
+# Redux 非同步行為處理及 Redux Middleware
 
 <img src={require("./img/reduxAsunc01.gif").default} alt="img" style={{zoom: "33%"}} />
 
@@ -51,53 +55,48 @@ Redux-saga 是個管理非同步行為的 Redux middleware，他使用 ES6 gener
            },
        }
    });
-   
+
    export const {
      	GET_TODOS,
        SET_TODOS,
    } = slice.actions;
-   
+
    export default slice.reducer;
-   
+
    ```
 
    ```js
    // saga
    import { put, takeEvery, all, call } from 'redux-saga/effects'
-   
+
    export function* helloSaga() {
      console.log('Hello Sagas!')
    }
-   
+
    // get todos 用的 saga，負責呼叫 API 去拿 todos，最後 dispatch SET_TODOS 存入結果
    export function* getTodos() {
      try {
        // 用 call 進行 API 呼叫，call 為指示用 effect，會指示 redux-saga 去執行傳入的 function，
-   		// 這例子中會執行 fetchTodos，response 會由 yield 取得
-       const response: ResponseGenerator = yield call(fetchTodos);
+       // 這例子中會執行 fetchTodos，response 會由 yield 取得
+       const response: ResponseGenerator = yield call(fetchTodos)
        const convertedResponse = convertTodos(response)
        // 用 put 來發起 dispatch action
-       yield put(SET_TODOS(convertedResponse)); 
+       yield put(SET_TODOS(convertedResponse))
      } catch (error) {
        console.error(error)
        // error handling...
      }
    }
-   
-   
+
    // 監聽所有 GET_TODOS action，如果被 dispatch 就執行 getTodos saga
    export function* watchTodoAsync() {
      yield takeEvery(GET_TODOS, getTodos)
    }
-   
-   
+
    // 將所有 saga 結合成一個 rootSaga export
    export default function* rootSaga() {
      // 同步在背景運行多個 saga
-     yield all([
-       helloSaga(),
-       watchTodoAsync()
-     ])
+     yield all([helloSaga(), watchTodoAsync()])
    }
    ```
 
@@ -106,30 +105,18 @@ Redux-saga 是個管理非同步行為的 Redux middleware，他使用 ES6 gener
    ```js
    import { createStore, applyMiddleware } from 'redux'
    import rootSaga from './sagas'
-   
+
    // 建立 middleware
    const sagaMiddleware = createSagaMiddleware()
-   const store = createStore(
-     reducer,
-     applyMiddleware(sagaMiddleware)
-   )
-   // 
+   const store = createStore(reducer, applyMiddleware(sagaMiddleware))
+   //
    sagaMiddleware.run(rootSaga)
-   
+
    // ...
    ```
-
-
 
 ## Reference
 
 ---
 
 [Redux-saga docs](https://redux-saga.js.org/docs/basics/DeclarativeEffects)
-
-
-
-
-
-
-

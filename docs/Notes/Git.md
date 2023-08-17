@@ -1,6 +1,8 @@
+---
+enableComments: true
+---
+
 # Git 常用指令
-
-
 
 ## merge
 
@@ -8,11 +10,11 @@
 
 用於合併分支。依照與合併的標的沒無衝突可以分兩種：
 
-- 無衝突：預設使用 `fast-forward`  參數選項，由 git 自動處理合併，新的 HEAD 就指到合併來源的最後一個 commit。
+- 無衝突：預設使用 `fast-forward` 參數選項，由 git 自動處理合併，新的 HEAD 就指到合併來源的最後一個 commit。
 
   > 執行合併時，使用 non fast-forward 參數選項，即使是可以 fast-forward 的合併也會建立新的 commit。
 
-- 有衝突： 預設使用 `non fast-forward`  參數選項，需要先解完衝突後才可以合併。過程中會產生一個新 commit，新的 HEAD 就指到這新的 commit。
+- 有衝突： 預設使用 `non fast-forward` 參數選項，需要先解完衝突後才可以合併。過程中會產生一個新 commit，新的 HEAD 就指到這新的 commit。
 
 ## Rebase
 
@@ -37,8 +39,6 @@
 ---
 
 用來讓你選擇性地將特定的 commit 從一個分支複製到另一個分支，而不影響原始分支的歷史記錄。這適用於只想要一個或少數幾個 commit 的情況。
-
-
 
 ## Reference
 

@@ -1,3 +1,7 @@
+---
+enableComments: true
+---
+
 # React useEffect hook
 
 ## 簡介
@@ -14,14 +18,14 @@ React 18 為了模擬 component unmount 後再次 mount 也會得到相同結果
 
 如果真的不需要可以用 `useRef` 判斷是否跑過一次。
 
-```js 
+```js
 const component1 = () => {
   const isFirstRender = React.useRef(true)
-  
+
   React.useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false
-      return 
+      return
     }
     // do whatever you want...
   }, [])
@@ -29,24 +33,20 @@ const component1 = () => {
 }
 ```
 
-
-
 ## 使用 useEffect
 
 ---
 
 1. 定義 `Effect` 邏輯
-2. 定義 `dependency`，即我們希望在哪些狀態變動的情況下重新執行 `Effect`，空的話代表只會在 component mount 執行一次 `Effect`  而已。
+2. 定義 `dependency`，即我們希望在哪些狀態變動的情況下重新執行 `Effect`，空的話代表只會在 component mount 執行一次 `Effect` 而已。
 3. 如果有需要可以 return 我們希望在下次 `dependency` 更新驅動 `Effect` 執行之前，要先執行的一段 function（cleanup function)
 
 ```js
 useEffect(() => {
   // 1. Effects
-  return () => { } // 3. cleanup function
-}, [deps]) // 2. dependency 
+  return () => {} // 3. cleanup function
+}, [deps]) // 2. dependency
 ```
-
-
 
 ## 何時需要 Effect？
 
@@ -59,8 +59,6 @@ useEffect(() => {
 
 當這些還不夠完成我們需要的功能時，例如說我們想要在 `ChatReoom` component 出現在畫面上時，去跟後端建立連線，這是跟畫面渲染無直接相關也不是事件驅動的 side effect，這些就可以用 `useEffect` 來執行。所以，那些因為 render 本身帶來的 side effect 就適合用 `useEffect` 來操作。
 
-
-
 ## useLayoutEffect
 
 ---
@@ -68,8 +66,6 @@ useEffect(() => {
 他跟 `useEffect` 長得很像，只差在 `Effect` 執行時間點。
 
 `useEffect` 會在畫面更新之後執行，而 `useLayoutEffect` 會在畫面更新之前執行。
-
-
 
 ## 也許不需要 useEffect 的場景
 
@@ -79,29 +75,32 @@ useEffect(() => {
 
    ```js
    function Form() {
-     const [firstName, setFirstName] = useState('Taylor');
-     const [lastName, setLastName] = useState('Swift');
-   
+     const [firstName, setFirstName] = useState('Taylor')
+     const [lastName, setLastName] = useState('Swift')
+
      // 🔴 Avoid: redundant state and unnecessary Effect
-     const [fullName, setFullName] = useState('');
+     const [fullName, setFullName] = useState('')
      useEffect(() => {
-       setFullName(firstName + ' ' + lastName);
-     }, [firstName, lastName]);
-     
+       setFullName(firstName + ' ' + lastName)
+     }, [firstName, lastName])
+
      // good: 直接計算得到就可以了，re-render 到最後本來就會拿到 firstName, lastName 最新的值
-     const fullName = firstName + ' ' + lastName;
+     const fullName = firstName + ' ' + lastName
    }
    ```
 
    如果是比較昂貴的計算，且不需要在每次 render 完都重新計算結果，就可以用 `useMemo` cache 住計算結果，並在 dependency 去傳入這個計算依賴的狀態，代表我們只需要在這些依賴狀態有變化的時候才要重新計算，其他時候就用舊的值即可。
 
    ```js
-   import { useMemo, useState } from 'react';
-   
+   import { useMemo, useState } from 'react'
+
    function TodoList({ todos, filter }) {
-     const [newTodo, setNewTodo] = useState('');
+     const [newTodo, setNewTodo] = useState('')
      // ✅ Does not re-run getFilteredTodos() unless todos or filter change
-     const visibleTodos = useMemo(() => getFilteredTodos(todos, filter), [todos, filter]);
+     const visibleTodos = useMemo(
+       () => getFilteredTodos(todos, filter),
+       [todos, filter]
+     )
      // ...
    }
    ```
@@ -112,12 +111,12 @@ useEffect(() => {
 
    ```js
    export default function ProfilePage({ userId }) {
-     const [comment, setComment] = useState('');
-   
+     const [comment, setComment] = useState('')
+
      // 🔴 Avoid: Resetting state on prop change in an Effect
      useEffect(() => {
-       setComment('');
-     }, [userId]);
+       setComment('')
+     }, [userId])
      // ...
    }
    ```
@@ -126,17 +125,12 @@ useEffect(() => {
 
    ```js
    export default function ProfilePage({ userId }) {
-     return (
-       <Profile
-         userId={userId}
-         key={userId}
-       />
-     );
+     return <Profile userId={userId} key={userId} />
    }
-   
+
    function Profile({ userId }) {
      // ✅ This and any other state below will reset on key change automatically
-     const [comment, setComment] = useState('');
+     const [comment, setComment] = useState('')
      // ...
    }
    ```
@@ -152,17 +146,17 @@ useEffect(() => {
      // 🔴 Avoid: Event-specific logic inside an Effect
      useEffect(() => {
        if (product.isInCart) {
-         showNotification(`Added ${product.name} to the shopping cart!`);
+         showNotification(`Added ${product.name} to the shopping cart!`)
        }
-     }, [product]);
-   
+     }, [product])
+
      function handleBuyClick() {
-       addToCart(product);
+       addToCart(product)
      }
-   
+
      function handleCheckoutClick() {
-       addToCart(product);
-       navigateTo('/checkout');
+       addToCart(product)
+       navigateTo('/checkout')
      }
      // ...
    }
@@ -174,17 +168,17 @@ useEffect(() => {
    function ProductPage({ product, addToCart }) {
      // ✅ Good: Event-specific logic is called from event handlers
      function buyProduct() {
-       addToCart(product);
-       showNotification(`Added ${product.name} to the shopping cart!`);
+       addToCart(product)
+       showNotification(`Added ${product.name} to the shopping cart!`)
      }
-   
+
      function handleBuyClick() {
-       buyProduct();
+       buyProduct()
      }
-   
+
      function handleCheckoutClick() {
-       buyProduct();
-       navigateTo('/checkout');
+       buyProduct()
+       navigateTo('/checkout')
      }
      // ...
    }
@@ -192,8 +186,7 @@ useEffect(() => {
 
 4. 用 `useEffect` 進行連鎖計算
 
-   這可能會導致 component 被 re-render 好幾次，造成不必要的效能支出。
-   如同下方例子：
+   這可能會導致 component 被 re-render 好幾次，造成不必要的效能支出。如同下方例子：
 
    `setCard` → render → `setGoldCardCount` → render → `setRound` → render → `setIsGameOver` → render
 
@@ -203,32 +196,32 @@ useEffect(() => {
      const [goldCardCount, setGoldCardCount] = useState(0);
      const [round, setRound] = useState(1);
      const [isGameOver, setIsGameOver] = useState(false);
-   
+
      // 🔴 Avoid: Chains of Effects that adjust the state solely to trigger each other
      useEffect(() => {
        if (card !== null && card.gold) {
          setGoldCardCount(c => c + 1);
        }
      }, [card]);
-   
-     
+
+
      useEffect(() => {
        if (goldCardCount > 3) {
          setRound(r => r + 1)
          setGoldCardCount(0);
        }
      }, [goldCardCount]);
-   
+
      useEffect(() => {
        if (round > 5) {
          setIsGameOver(true);
        }
      }, [round]);
-   
+
      useEffect(() => {
        alert('Good game!');
      }, [isGameOver]);
-   
+
      function handlePlaceCard(nextCard) {
        if (isGameOver) {
          throw Error('Game already ended.');
@@ -236,7 +229,7 @@ useEffect(() => {
          setCard(nextCard);
        }
      }
-   
+
      // ...
    ```
 
@@ -247,15 +240,15 @@ useEffect(() => {
      const [card, setCard] = useState(null);
      const [goldCardCount, setGoldCardCount] = useState(0);
      const [round, setRound] = useState(1);
-   
+
      // ✅ Calculate what you can during rendering
      const isGameOver = round > 5;
-   
+
      function handlePlaceCard(nextCard) {
        if (isGameOver) {
          throw Error('Game already ended.');
        }
-   
+
        // ✅ Calculate all the next state in the event handler
        setCard(nextCard);
        if (nextCard.gold) {
@@ -270,14 +263,11 @@ useEffect(() => {
          }
        }
      }
-   
-   ```
 
-   
+   ```
 
 ## Reference
 
 ---
 
 [React docs](https://react.dev/learn/you-might-not-need-an-effect)
-
