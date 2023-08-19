@@ -55,3 +55,58 @@ const func2 = (fn) => { return fn }
 
 
 
+## Closure
+
+---
+
+Closure 閉包簡單來說就是 function 與他的 scope chain 的集合。
+
+閉包使得我們可以確信永遠能夠在 function 內取用 scope chain 的變數，即便外部的 function 已經執行完畢。
+
+以下為一個例子，在 outer 執行完之後，他的 execution context 已經離開 call stack，但 return 的 function 依然抓得到 outerVar，這是因為他不只 return 了那個 function，也 return 了外部參照的 scope chain。
+
+```js
+const outer = (outerVar) => {
+  return () => {
+    console.log(outerVar)
+  }
+}
+
+const inner = outer('outerVarIsMe')
+inner()
+// outerVarIsMe
+```
+
+所以實務上閉包可以用在哪呢？
+
+1. 私有變數
+
+   不想暴露 function 內的變數給外部任意存取及修改時，會使用到私有變數。
+
+```js
+const wallet = () => {
+	let balance = 1000
+  const decreaseBalance =  (price) => {
+			balance = balance - price
+	}
+ 	const getBalance = () => console.log(balance)
+	return { getBalance, decreaseBalance }
+}
+
+const myWallet = wallet()
+
+myWallet.getBalance()
+myWallet.decreaseBalance(100)
+myWallet.getBalance()
+```
+
+
+
+
+
+
+
+
+
+
+

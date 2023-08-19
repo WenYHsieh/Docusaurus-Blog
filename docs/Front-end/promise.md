@@ -17,8 +17,8 @@ Promise 是個建構函式，讓我們可以定義一段非同步行為，在成
     ```js
     const p = new Promise()
 
-    p.then() // 用於操作成功的情況
-    p.catch() // 用於操作失敗的情況
+    p.then() // 用於操作成功的情況，resolve (fulfilled) 會調用
+    p.catch() // 用於操作失敗的情況，reject 會調用
     p.finally() // 無論狀態是成功或失敗都會執行當中的 callback
     ```
 
@@ -27,8 +27,8 @@ Promise 是個建構函式，讓我們可以定義一段非同步行為，在成
     ```js
     new Promise((resolve, reject) => {
       // 在這的東西會立刻被執行
-      resolve() // 正確完成的回傳方法
-      reject() // 失敗的回傳方法
+      resolve() // 設定為 resole (fulfilled)
+      reject() // 設定為 reject
     })
     ```
 

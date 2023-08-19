@@ -50,6 +50,8 @@ useEffect(() => {
 }, [deps]) // 2. dependency
 ```
 
+
+
 ## 何時需要 Effect？
 
 ---
@@ -61,6 +63,32 @@ useEffect(() => {
 
 當這些還不夠完成我們需要的功能時，例如說我們想要在 `ChatReoom` component 出現在畫面上時，去跟後端建立連線，這是跟畫面渲染無直接相關也不是事件驅動的 side effect，這些就可以用 `useEffect` 來執行。所以，那些因為 render 本身帶來的 side effect 就適合用 `useEffect` 來操作。
 
+
+
+## useEffect cleanup function
+
+---
+
+實務開發中，有一種常見的情形會使用到 `useEffect` cleanup function，就是當我們利用 `useEffect` 綁定 event handler 時，如下：
+
+```js
+const component1 = () => {
+  useEffect(() => {
+    const handleScroll = (e) => {
+    	console.log(window.scrollX, window.scrollY);
+  	}
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [])
+}
+```
+
+在 component mount 時我們綁定了一個 scroll event handler `handleScroll`，因此，在這個 component 離開畫面之後，我們也應該要移除這個 `handleScroll` 的綁定。
+
+這是因為如果不移除，會導致元件的實例仍然保留在記憶體中，無法被垃圾回收。這可能導致記憶體洩漏，使 React app 佔用更多記憶體。而另一方面，畫面上已經沒有此 component，但這個 event handler 持續在作用，這可能會導致預料之外的行為。
+
+
+
 ## useLayoutEffect
 
 ---
@@ -68,6 +96,8 @@ useEffect(() => {
 他跟 `useEffect` 長得很像，只差在 `Effect` 執行時間點。
 
 `useEffect` 會在畫面更新之後執行，而 `useLayoutEffect` 會在畫面更新之前執行。
+
+
 
 ## 也許不需要 useEffect 的場景
 
@@ -198,31 +228,31 @@ useEffect(() => {
      const [goldCardCount, setGoldCardCount] = useState(0);
      const [round, setRound] = useState(1);
      const [isGameOver, setIsGameOver] = useState(false);
-
+   
      // 🔴 Avoid: Chains of Effects that adjust the state solely to trigger each other
      useEffect(() => {
        if (card !== null && card.gold) {
          setGoldCardCount(c => c + 1);
        }
      }, [card]);
-
+   
      useEffect(() => {
        if (goldCardCount > 3) {
          setRound(r => r + 1)
          setGoldCardCount(0);
        }
      }, [goldCardCount]);
-
+   
      useEffect(() => {
        if (round > 5) {
          setIsGameOver(true);
        }
      }, [round]);
-
+   
      useEffect(() => {
        alert('Good game!');
      }, [isGameOver]);
-
+   
      function handlePlaceCard(nextCard) {
        if (isGameOver) {
          throw Error('Game already ended.');
@@ -230,7 +260,7 @@ useEffect(() => {
          setCard(nextCard);
        }
      }
-
+   
      // ...
    ```
 
@@ -241,15 +271,15 @@ useEffect(() => {
      const [card, setCard] = useState(null)
      const [goldCardCount, setGoldCardCount] = useState(0)
      const [round, setRound] = useState(1)
-
+   
      // ✅ Calculate what you can during rendering
      const isGameOver = round > 5
-
+   
      function handlePlaceCard(nextCard) {
        if (isGameOver) {
          throw Error('Game already ended.')
        }
-
+   
        // ✅ Calculate all the next state in the event handler
        setCard(nextCard)
        if (nextCard.gold) {
@@ -265,7 +295,7 @@ useEffect(() => {
        }
      }
    }
-
+   
    // ...
    ```
 

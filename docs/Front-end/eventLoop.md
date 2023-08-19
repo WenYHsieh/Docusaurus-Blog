@@ -28,6 +28,10 @@ Event loop 這個機制就是去幫你不斷監控目前 call stack 的同步任
 
 
 
+## 範例
+
+---
+
 #### 範例一：
 
 ``` js
@@ -74,7 +78,7 @@ console:
 
 
 
-###  範例二：
+**範例二：**
 
 ```js
 console.log('script start');
@@ -96,7 +100,7 @@ console.log('script end');
 
 1. 印出 script start
 2. 把 setTimeout callback 放到 Macrotask queue
-3. 把 Promise 第一個 `.then` callback 放到 Microtask queue
+3. 把 Promise resolve 因此，第一個 `.then` callback 放到 Microtask queue
 4. 印出 script end
 5. call stack 空了，去拿 Microtask queue 的任務，也就是第一個 `.then` 的 callback，放到 call stack，執行。印出 promise1
 6. 把 Promise 第二個 `.then` callback 放到 Microtask queue
@@ -115,7 +119,7 @@ setTimeout
 
 
 
-### 範例三：
+**範例三：**
 
 ```js
 console.log('begins');
@@ -156,7 +160,7 @@ new Promise(function (resolve, reject) {
 6. 把 P1 區塊 callback 放到 Microtask queue
 7. call stack 空了，去執行 Microtask queue，P1 區塊 callback，印出 promise 1
 8. call stack 空了，去執行 Macrotask queue 第二個任務，S2 區塊 callback，印出 setTimeout 2
-9. resolve 把狀態設定為 fulfilled，執行 `.then` 區塊，把 P2 區塊 callback 放到 Microtask queue
+9. resolve 執行使得 `.then` 區塊 P2 區塊 callback 放到 Microtask queue
 10. call stack 空了，去執行 Microtask queue，P2  區塊 callback，印出 dot then 1
 11. 把 S3 區塊 callback 放到 Macrotask queue
 12. call stack 空了，去執行 Macrotask queue 最後一個任務，S3 區塊 callback，印出 resolve 1
