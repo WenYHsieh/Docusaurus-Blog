@@ -213,3 +213,39 @@ https://blog.gtwang.org/web-development/css-font-face/
   - 內層 div position: absolute + left: 50% + transform: translateX(-50%) （外層 div 不可為 position: static)
   - 內層 div margin: 0 auto (元素要記得設定寬度)
 
+
+
+## CSS 優先級
+
+---
+
+在 CSS 當中有各種定義樣式的寫法，例如使用 id, class 或者直接用標籤名稱定義，瀏覽器會通過一個優先級分數的計算，最後呈現在畫面上的會是最高分者（如果有同分的，後面的會被套用）。
+
+**優先級分數**
+
+- 一般可分為三個位置計算 `X-Y-Z`:
+
+  - X: id selector (`#`) 的數量
+
+  - Y: class selector (`.`), attribute selector (`[a=b]`), pseudo-classes (`:`) 的數量
+
+  - Z: element selector (ex: `div`), pseudo-elements (`::`) 的數量
+
+- 優先級別高低分別是：X > Y > Z
+  - 有兩個例外：`!important` 及 inline style。inline style 會優先於所有 selector ，`!important` 則可以保證絕對會被套用。 
+
+- Universal selector (`*`) 及 combinator (`+`, ` ~`, ` >`) ，不計分
+
+
+
+**使用原則**
+
+應該盡量比免使用 `!important` 來蓋過樣式，因為他會破壞計分規則，造成 debug 的困難。可以去考慮加上一些 selector 來讓樣式的指定更加明確以增加優先級
+
+
+
+Reference:
+
+https://specifishity.com/
+
+[MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Specificity#%E4%BC%98%E5%85%88%E7%BA%A7%E6%98%AF%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E7%9A%84%EF%BC%9F)
