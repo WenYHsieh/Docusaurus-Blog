@@ -1,6 +1,8 @@
+---
+enableComments: true
+---
+
 # CSS 一些觀念
-
-
 
 ## Box model
 
@@ -23,8 +25,6 @@ Box model 是將 html 元素當作一個很多層的盒子來定義的模型，C
 
 比較要注意的點是，**box model 預設為 content-box**，指的是對這個元素定義的寬高是 content，因此調整 padding 或 border 後會使得整個元素寬高變得更大，造成變形。這時候改設定 box model 為 border-box，在此設定之下調整 padding 跟 border，CSS 會自動計算調整各個部分的大小，讓 border 以內範圍的寬高符合我們所設定的寬高。
 
-
-
 ## CSS 常用 selector
 
 ---
@@ -37,7 +37,7 @@ Box model 是將 html 元素當作一個很多層的盒子來定義的模型，C
 | a + b  | 選中最靠近的同級元素                |
 | .a.b   | 選中同時具有 a, b class name 的元素 |
 | a[x=y] | 選中 x 屬性被設定為 y 的 a 元素     |
-| *      | 全選                                |
+| \*     | 全選                                |
 | #a     | 選中 id 為 a 的元素                 |
 | div    | 選中所有 div 元素                   |
 
@@ -54,8 +54,6 @@ Box model 是將 html 元素當作一個很多層的盒子來定義的模型，C
 - div ~ section
   - 選中 div 最接近的所有為 section 的 sibling 元素 (同一層級)
 
-
-
 ## class name Naming convention
 
 ---
@@ -69,8 +67,6 @@ CSS 是全域的，因此會有 class name 相同後面覆蓋到前面的問題�
 因此 BEM 把一個元素的 class 用這三者來加以定義，使之形成 scope，來減少撞名的可能。
 
 例如，元素是一個資訊卡中的按鈕，可能會這樣命名：`infoCard__button--active` -> `[Block]__[Element]--[Modifier]`
-
-
 
 ## display
 
@@ -110,8 +106,6 @@ CSS 是全域的，因此會有 class name 相同後面覆蓋到前面的問題�
   - 跳脫排版流，以瀏覽器的位置 (viewport) 來做定位。
   - 不會影響到周邊其他元素。
 
-
-
 ## font-face
 
 ---
@@ -127,23 +121,19 @@ CSS 是全域的，因此會有 class name 相同後面覆蓋到前面的問題�
 ```css
 @font-face {
   font-family: 'nicefont';
-  src: url(ideal-sans-serif.woff) format("woff"),
-       url(basic-sans-serif.ttf) format("opentype");
+  src: url(ideal-sans-serif.woff) format('woff'), url(basic-sans-serif.ttf)
+      format('opentype');
 }
 
-body { 
+body {
   // 第一順位套用 nicefont，不支援的話換用 serif
-  font-family: 'nicefont', 'serif'
+  font-family: 'nicefont', 'serif';
 }
 ```
-
-
 
 Reference:
 
 https://blog.gtwang.org/web-development/css-font-face/
-
-
 
 ## 垂直與水平置中的作法
 
@@ -152,16 +142,15 @@ https://blog.gtwang.org/web-development/css-font-face/
 **文字 in div:**
 
 - 垂直：
+
   - flex + align-items: center
-  
+
     ```html
-    <div class='container'>
-      <p>
-        文字
-      </p>
+    <div class="container">
+      <p>文字</p>
     </div>
     ```
-  
+
     ```css
     .container {
       display: flex;
@@ -171,26 +160,23 @@ https://blog.gtwang.org/web-development/css-font-face/
       background-color: pink;
     }
     ```
-  
-    
-  
+
   - line-height: 行高就是單行的高度，把他、設定為元素 height
-  
+
     ```css
     .container {
       height: 100px;
     }
-    
+
     p {
-        line-height: 100px;
+      line-height: 100px;
     }
     ```
-  
-    
-  
+
 - 水平：
+
   - flex + justify-content: center
-  
+
     ```css
     .container {
       display: flex;
@@ -200,8 +186,6 @@ https://blog.gtwang.org/web-development/css-font-face/
       background-color: pink;
     }
     ```
-  
-    
 
 **Div in div**
 
@@ -212,8 +196,6 @@ https://blog.gtwang.org/web-development/css-font-face/
   - 外層 div display: flex + justify-content: center
   - 內層 div position: absolute + left: 50% + transform: translateX(-50%) （外層 div 不可為 position: static)
   - 內層 div margin: 0 auto (元素要記得設定寬度)
-
-
 
 ## CSS 優先級
 
@@ -232,17 +214,14 @@ https://blog.gtwang.org/web-development/css-font-face/
   - Z: element selector (ex: `div`), pseudo-elements (`::`) 的數量
 
 - 優先級別高低分別是：X > Y > Z
-  - 有兩個例外：`!important` 及 inline style。inline style 會優先於所有 selector ，`!important` 則可以保證絕對會被套用。 
+
+  - 有兩個例外：`!important` 及 inline style。inline style 會優先於所有 selector ，`!important` 則可以保證絕對會被套用。
 
 - Universal selector (`*`) 及 combinator (`+`, ` ~`, ` >`) ，不計分
-
-
 
 **使用原則**
 
 應該盡量比免使用 `!important` 來蓋過樣式，因為他會破壞計分規則，造成 debug 的困難。可以去考慮加上一些 selector 來讓樣式的指定更加明確以增加優先級
-
-
 
 Reference:
 

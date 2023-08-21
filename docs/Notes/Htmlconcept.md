@@ -1,3 +1,7 @@
+---
+enableComments: true
+---
+
 # HTML 一些觀念
 
 ## script tag
@@ -23,8 +27,6 @@
 
 這個方法會阻塞 DOM 建構，如果 `app.js` 是比較大的檔案，畫面可能會較久才能完整呈現。所以通常會放在所有 html 的後面。
 
-
-
 **狀況二：放在所有 html 的後面**
 
 ```html
@@ -43,8 +45,6 @@
 
 因此後來出現兩個屬性，`defer`, `asyc` 可以處理上述的問題。
 
-
-
 ### script tag with defer
 
 ```html
@@ -56,8 +56,6 @@
 - JS 有多份、且有相依性，需要在 DOM 準備好之後才執行的狀況適用
 - 這個方法跟把 script tag 放到最後，雖然都是最後才執行 JS，但差異是，JS 的下載可以跟 DOM 建構並行，因此可以節省一點時間。
 
-
-
 ### script tag with async
 
 ```html
@@ -67,17 +65,13 @@
 - 會在背景下載 JS ，不會阻塞 DOM 建構，下載完畢的 JS 會被立刻執行。
 - 有多份 JS 時，無法保證執行順序等於引入順序
 
-
-
 ### ref
 
 https://www.explainthis.io/zh-hant/interview-guides/frontend/fe-script-async-defer-difference
 
 https://pjchender.dev/javascript/js-async-defer/#defer
 
-
-
-## Semantic elements 
+## Semantic elements
 
 ---
 
@@ -90,4 +84,3 @@ sematic elements 語意化標籤，在 HTML 當中指的是那些可以清楚定
 除了使開發人員本身更能一目了然 HTML 的結構，對於程式來說也更容易解讀。
 
 網頁在被搜尋引擎解析時，能夠因為語意化標籤的存在而更有辦法了解網頁的架構，就使得他有更好的 SEO。另外，語意化標籤也長用於建構無障礙的網站，這是為了輔助設備能夠良好地理解網頁的架構。
-

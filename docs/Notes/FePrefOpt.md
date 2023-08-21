@@ -4,8 +4,6 @@
 >
 > 佈署 web server：Nginx
 
-
-
 ## 網頁效能常見術語
 
 ---
@@ -15,8 +13,6 @@
 - **FCP, First Contentful Paint**：第一個能被使用者看見的內容出現的時間
 - **TTI, Time To Interactive**：直到可以互動為止的時間
 
-
-
 ## 為何要提升第一次進系統的速度
 
 ---
@@ -24,8 +20,6 @@
 1. 對 SEO 較好：有關於瀏覽器爬蟲每天分配給我們網站的時數有限
 
 2. 提升使用者體驗
-
-   
 
 ## 提升第一次進系統速度的思路
 
@@ -52,4 +46,3 @@
 以 route 為單位設定 dynamic import
 
 - React `<suspense/>` and `React.lazy`
-

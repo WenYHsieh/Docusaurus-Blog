@@ -1,35 +1,39 @@
+---
+enableComments: true
+---
+
 # React Virtual DOM and Reconciliation
 
 了解 Virtual DOM 與 Reconciliation 是什麼之前，要先了解 react element 與 react component 的概念。
-
-
 
 ## React element
 
 ---
 
-當我們寫一個  React component 的時候，React 在背後會把 JSX 會被轉成  `React.createElement(...)` function call ，這個 function 會 return 一個 plain object  形式的資料。這也就是為何每次建立  component 都一定要 import React。
+當我們寫一個 React component 的時候，React 在背後會把 JSX 會被轉成 `React.createElement(...)` function call ，這個 function 會 return 一個 plain object 形式的資料。這也就是為何每次建立 component 都一定要 import React。
 
-例如：現在有個 App component 
+例如：現在有個 App component
 
 ```jsx
 const App = (props) => {
-  const {name} = props
-	return <div id={name}>hi</div>
+  const { name } = props
+  return <div id={name}>hi</div>
 }
 ```
 
 實際上會轉換成以下
 
 ```js
-const App = props => {
-  const {
-    name
-  } = props;
-  return React.createElement("div", {
-    id: name
-  }, "hi"); 
-};
+const App = (props) => {
+  const { name } = props
+  return React.createElement(
+    'div',
+    {
+      id: name,
+    },
+    'hi'
+  )
+}
 ```
 
 如果呼叫的話 `console.log(App())` 會得到這樣的 object，這個 object 就是 react element。
@@ -42,8 +46,6 @@ const App = props => {
 > 2. 第二是 function component 的參數
 > 3. 第三是 children
 
-
-
 ## React component
 
 ---
@@ -52,12 +54,10 @@ const App = props => {
 
 因此如果依照上面的例子，這 App 就是一個 react (function) component。
 
-如果寫 `<App/>` react 會在背後幫我們... 
+如果寫 `<App/>` react 會在背後幫我們...
 
 - function component: 傳入參數呼叫 function component
 - class component: 建立 instance, 呼叫 render function
-
-
 
 ## Virtual DOM
 
@@ -65,13 +65,11 @@ const App = props => {
 
 由上面可知，React 運作時會將 nested JSX 轉換成 object 形式的 react elements tree，也稱之為 virtual DOM。
 
-
-
 ## Reconciliation
 
 ---
 
-初始時，這個 virtual DOM 直接跟真實的 DOM 同步就好。但當有任何 react elements 改變了呢？ 
+初始時，這個 virtual DOM 直接跟真實的 DOM 同步就好。但當有任何 react elements 改變了呢？
 
 React 不會直接去修改真實 DOM，因為修改 DOM 的效能成本是很大的，他會透過新舊 virtual DOM 之間的差異來判斷是不是要真的有需要改變，才 commit 到真正的 DOM，這個比對同步的過程就稱為 Reconciliation。
 
@@ -79,7 +77,7 @@ React 不會直接去修改真實 DOM，因為修改 DOM 的效能成本是很�
 
 1. 不同類型的 element 會產生完全不同的 virtual DOM
 
-   > - 若不同類型（例如，同個位置從 　`<h1>`  換成了 `<h2>` 或  `<Component1/>` 換成了 `<Component2/>`)： React 會把 virtual DOM 重產
+   > - 若不同類型（例如，同個位置從 　`<h1>` 換成了 `<h2>` 或 `<Component1/>` 換成了 `<Component2/>`)： React 會把 virtual DOM 重產
    >
    > - 若相同： 例如只是更新的參數，那就會只更新那個參數，不重產
 
@@ -90,12 +88,13 @@ React 不會直接去修改真實 DOM，因為修改 DOM 的效能成本是很�
    ```jsx
    const renderListData = () => {
      const data = ['one', 'two']
-     return <ul>{
-         data.map((item, index) => {
+     return (
+       <ul>
+         {data.map((item, index) => {
            return <li key={index}>{item}</li>
-         })
-       }
-     </ul>
+         })}
+       </ul>
+     )
    }
    ```
 
@@ -104,9 +103,9 @@ React 不會直接去修改真實 DOM，因為修改 DOM 的效能成本是很�
    ```
    item 'one' / key 0
    item 'two' / key 1
-   
+
    == insert 'zero' =>
-   
+
     item 'zero' / key 0
     item 'one' / key 1
     item 'two' / key 2
@@ -117,17 +116,16 @@ React 不會直接去修改真實 DOM，因為修改 DOM 的效能成本是很�
    ```jsx
    const renderListData = () => {
      const data = ['one', 'two']
-     return <ul>{
-         data.map((item) => {
+     return (
+       <ul>
+         {data.map((item) => {
            // 假設 item 不會重複，改用 item 作為 key
            return <li key={item}>{item}</li>
-         })
-       }
-     </ul>
+         })}
+       </ul>
+     )
    }
    ```
-
-
 
 ## Reference
 
