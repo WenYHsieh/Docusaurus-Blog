@@ -328,6 +328,25 @@ const array2 = [4, 5, 6]
 array1.concat(array2)
 ```
 
+
+
+### flat
+
+`Array.flat(dept)`
+
+- 用來將巢狀 array 攤平成一維
+  - dept 可傳巢狀層數，預設為 1，無法預知的話可傳 `Infinity`
+- 不會改變原本的 Array
+- 回傳合併之後的 Array
+
+```js
+const array1 = [1, 2, [3, 4, 5]]
+array1.flat()
+// [1, 2, 3, 4, 5]
+```
+
+
+
 ## Object method
 
 ---
