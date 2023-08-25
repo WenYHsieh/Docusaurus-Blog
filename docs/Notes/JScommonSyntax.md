@@ -444,3 +444,18 @@ console.log(fileMap)
 
 
 
+## String
+
+---
+
+### toLowerCase
+
+- 會將字串中的所有字母都轉換為小寫，不考慮語言的區域設定。
+- 例如：`"Hello World".toLowerCase()` 會返回 `"hello world"`。
+
+### toLocaleLowerCase
+
+- 類似於 `toLowerCase`，但會考慮到當前環境的語言設定，根據語言區域轉換字母為小寫。
+- 這意味著一些語言可能有不同的小寫轉換規則。例如，土耳其語（Turkish）中的 "I" 在小寫時會變成 "ı"，而不是 "i"。
+- 這個方法可以接受一個參數，用來指定要使用的語言環境，但通常情況下不需要傳入參數，它會自動使用當前環境的設定。
+- 例如：`"Hello World".toLocaleLowerCase()` 會根據語言設定返回相對應的小寫字串。
