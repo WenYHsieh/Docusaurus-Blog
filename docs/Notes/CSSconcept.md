@@ -167,7 +167,7 @@ https://blog.gtwang.org/web-development/css-font-face/
     .container {
       height: 100px;
     }
-
+  
     p {
       line-height: 100px;
     }
@@ -228,3 +228,20 @@ Reference:
 https://specifishity.com/
 
 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Specificity#%E4%BC%98%E5%85%88%E7%BA%A7%E6%98%AF%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E7%9A%84%EF%BC%9F)
+
+
+
+## CSS reset v.s. normalize
+
+---
+
+**reset**
+
+清除元素的預設樣式，如 margin, padding。要注意瀏覽器渲染結果可能有差異
+
+**Normalize**
+
+CSS Normalize 是在保持有用預設樣式同時，盡量減少不同瀏覽器之間差異。
+
+他為各元素提供基礎樣式，來建立更一致的起點，也修復了一些常見的樣式問題，使元素在各瀏覽器之前顯示更加一致。
+

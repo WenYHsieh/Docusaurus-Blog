@@ -79,9 +79,7 @@ inner()
 
 所以實務上閉包可以用在哪呢？
 
-1. 私有變數
-
-   不想暴露 function 內的變數給外部任意存取及修改時，會使用到私有變數。
+私有變數，不想暴露 function 內的變數給外部任意存取及修改時，會使用到私有變數。
 
 ```js
 const wallet = () => {
@@ -102,11 +100,35 @@ myWallet.getBalance()
 
 
 
+## function currying 柯里化
 
+---
 
+1. use bind
 
+   ```js
+   const multiply = (x, y) => {
+     return x * y
+   }
+   
+   const multiplyByTwo = multiply.bind(this, 2)
+   multiplyByTwo(3) // 6
+   ```
 
+2. closure
 
+   ```js
+   const multiply = (x) => {
+     return (y) => {
+       return x * y
+     }
+   }
+   
+   const result = multiply(2)(3) // 6
+   console.log(result)
+   ```
+
+   
 
 
 

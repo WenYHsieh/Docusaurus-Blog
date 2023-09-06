@@ -4,20 +4,12 @@
 
 ---
 
-Store: 儲存 state 的一個倉庫
-
-action: 只是一個用來描述狀態變化的 JS object，要有一個 type 屬性
-
-```js
-{
-  type: 'INCRESE_AMOUNT',
-  amount: 1
-}
-```
-
-Dispatch：一個把 action 傳給 store 的 function（而 redux 會再把 action 傳給 reducer）
-
-Reducer: 在 store 裡面的一個藉由接收 action 與之前的狀態對 state 更新的 "pure" function
+| 名稱     | 描述                                                         |
+| -------- | ------------------------------------------------------------ |
+| Store    | 儲存 state 的一個倉庫                                        |
+| Action   | 用來描述狀態變化的 JS object，必須有一個 type 屬性           |
+| Dispatch | 一個把 action 傳遞給 store 的 function（Redux 會再把 action 傳遞給 reducer） |
+| Reducer  | 在 store 中的一個純函數，接受 action 和之前的狀態，用於更新 state |
 
 資料更新流程：UI 呼叫 event handler -> event handler dispatch action 到 store -> store 的 reducer 更新 state -> UI 監聽到 state 的變化，於是更新 component 資料或 UI
 
