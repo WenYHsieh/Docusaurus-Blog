@@ -19,7 +19,7 @@ enableComments: true
 
 
 ## 技術 
-(last updated: 2024/10)
+(last updated: 2023/10)
 
 ---
 
