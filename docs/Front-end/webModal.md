@@ -10,7 +10,7 @@ enableComments: true
 
 ### Multi-page application, MPA
 
-傳統網頁採用 Multi-page application 多頁面架構，前端需要換頁面時，要發 request 請 server 計算完要成現在畫面上的 html 再拿回來呈現，更新畫面，會有一個跳轉換頁動作。
+傳統網頁採用 Multi-page application 多頁面架構，前端需要換頁面時，要發 request 請 server 計算完要成現在畫面上的 html 再拿回來呈現，更新畫面，會有一個跳轉換頁動作（整個畫面取代成新的 HTML）。
 
 ### Single-page application, SPA
 

@@ -108,6 +108,13 @@ devServer: {
 
 6. 如果不希望重複發送 req. 時不要每次都重發 preflight 檢查，可以請後端設定 `Access-Control-Max-Age` 來在一段時間內快取住預檢。
 
+## Browser direct actions
+
+由 a tag href 連結或直接在瀏覽器貼上資源網址的方式都在此限。
+CORS 限制的是 JS 指揮 fetch API 或 XHR 發的 request，browser direct actions 算是瀏覽器直接發起的 HTTP request，因此不受 CORS 限制。
+
+=>https://chat.openai.com/share/26787a06-2d17-42b2-8b87-24c6b214cc2b
+
 ## Pitfall
 
 `fetch API` 的 `mode: "cors"` 並不是讓你直接跨過 cors 拿到跨域資源的方法。他其實是會告訴瀏覽器，我們已經知道這 request 有 CORS issue ，不用給警告及 response。

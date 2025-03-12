@@ -167,7 +167,7 @@ https://blog.gtwang.org/web-development/css-font-face/
     .container {
       height: 100px;
     }
-  
+    
     p {
       line-height: 100px;
     }
@@ -245,3 +245,21 @@ CSS Normalize 是在保持有用預設樣式同時，盡量減少不同瀏覽器
 
 他為各元素提供基礎樣式，來建立更一致的起點，也修復了一些常見的樣式問題，使元素在各瀏覽器之前顯示更加一致。
 
+
+
+## Common CSS solution
+
+---
+
+**SASS/SCSS**
+
+CSS pre-processor，提供一些像是程式語言語法，例如：巢狀 class 定義、變數、迴圈等等，來幫助提升 CSS 可讀性、重用性。
+
+仍然存在 CSS class 全域的問題，通常可以用一些 class 命名規範來解決，如：BEM 命名法
+
+**CSS-in-JS**
+
+將 CSS 撰寫在 JS 檔案裡面，增加 JS 動態控制樣式的能力，可以比較容易做出較複雜的動畫
+
+- Styled-components
+- CSS module

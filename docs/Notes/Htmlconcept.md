@@ -71,6 +71,10 @@ https://www.explainthis.io/zh-hant/interview-guides/frontend/fe-script-async-def
 
 https://pjchender.dev/javascript/js-async-defer/#defer
 
+https://ithelp.ithome.com.tw/m/articles/10216858
+
+
+
 ## Semantic elements
 
 ---

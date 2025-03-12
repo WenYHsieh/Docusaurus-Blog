@@ -54,7 +54,7 @@ enableComments: true
 
 以下是更多智能合約的好處 （擷取自 [以太坊官網](https://ethereum.org/)）
 
-![img](../img/ethereum01.png)
+![img](./img/ethereum01.png)
 
 
 
@@ -114,7 +114,7 @@ Node 可分為三種：
 
 Account 在 Ethereum 代表可以發送 transaction 的一個實體。
 
-![img](../img/ethereum02.png)
+![img](./img/ethereum02.png)
 
 **Ethereum 有兩種帳號：**
 

@@ -50,6 +50,8 @@ Cookie 是 HTTP 中，實作（建立） session 的一個工具（容器），�
 
 ![img](./img/cookieAndSession01.png)
 
+＃備註：同網域是指 same domain，不是 same origin
+
 **cookie 種類**
 
 - session cookie: 沒有特別設置 expire, Max-age，關掉瀏覽器就會被清掉了的這種
